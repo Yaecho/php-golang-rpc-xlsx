@@ -14,6 +14,7 @@ import (
 
 type Excel struct{}
 
+// 生成Excel，将二进制文件返回
 func (s *Excel) Encode(data [][]interface{}, res *[]byte) error {
 	xlsx := excelize.NewFile()
 
@@ -39,6 +40,7 @@ func (s *Excel) Encode(data [][]interface{}, res *[]byte) error {
 	return nil
 }
 
+// 解析Excel文件 返回二维数组
 func (s *Excel) Decode(file []byte, res *[][]string) error {
 	buf := bytes.NewBuffer(file)
 	xlsx, err := excelize.OpenReader(buf)
@@ -59,6 +61,7 @@ func (s *Excel) Decode(file []byte, res *[][]string) error {
 	return nil
 }
 
+// 将数字列名转为大写字母
 func getColumnName(c int) (name string) {
 	for c >= 26 {
 		temp := c%26
@@ -76,7 +79,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
+	//注册
 	rpc.Register(new(Excel))
 
 	for {

@@ -9,11 +9,11 @@ $rpc = new Goridge\RPC(new Goridge\SocketRelay("127.0.0.1", 6001));
 $data = [];
 
 
-for ($i = 0; $i < 6; $i++) {
+for ($i = 0; $i < 60000; $i++) {
     $data[] = ['yaecho', 'https://yaecho.net', '2019-01-01', 'haha', '12:00', '2131245666', 2019];
 }
 
-
+//rpc 调用Encode方法
 $file = $rpc->call("Excel.Encode", $data);
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
