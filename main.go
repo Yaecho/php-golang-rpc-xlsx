@@ -50,7 +50,7 @@ func (s *Excel) Decode(file []byte, res *[][]string) error {
 	}
 
 	// 获取 Sheet1 上所有单元格
-	rows, err := xlsx.GetRows("Sheet1")
+	rows, err := xlsx.GetRows(xlsx.GetSheetName(xlsx.GetActiveSheetIndex()))
 	if err != nil {
 		fmt.Println(err)
 		return err
